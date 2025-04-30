@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR тепер вказує на папку 'MY SITE'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p-+g8+woandrt72!sbp(j#w_d3ci#)-1tf2#u5c+fu&4%5n7!h'
+SECRET_KEY = 'django-insecure-p-+g8+woandrt72!sbp(j#w_d3ci#)-1tf2#u5c+fu&4%5n7!h' # Бажано замінити на своє значення
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # Залишаємо True для розробки
 
 ALLOWED_HOSTS = []
 
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app_blog',
+    'django.contrib.staticfiles', # Переконайся, що цей рядок є
+    'app_blog', # Твій додаток
 ]
 
 MIDDLEWARE = [
@@ -51,15 +51,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'mysite.urls' # Головний файл urls.py твого проекту
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # DIRS: Тут можна вказати шлях до глобальної папки шаблонів,
+        # якщо вона є на рівні BASE_DIR. Наприклад: [BASE_DIR / 'templates']
+        # Якщо твої шаблони тільки всередині додатків, можна залишити порожнім.
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # Дозволяє Django шукати шаблони в папках 'templates' додатків
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', # Шлях до файлу бази даних SQLite
     }
 }
 
@@ -104,23 +108,37 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+# Можеш змінити мову та часовий пояс за потреби
+LANGUAGE_CODE = 'uk' # Наприклад, українська
+TIME_ZONE = 'Europe/Kyiv' # Наприклад, київський час
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = True # Використання часових поясів
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Можливо, у вас вже є цей рядок
+STATIC_URL = '/static/' # URL-префікс для статичних файлів
 
+# ----- ОСЬ ТУТ ВАЖЛИВІ ЗМІНИ -----
+# Вказуємо Django шукати статичні файли в папці 'static' у корені проекту
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Папка, куди будуть збиратися всі статичні файли командою collectstatic
+# Краще використовувати ім'я, відмінне від папок у STATICFILES_DIRS
+STATIC_ROOT = BASE_DIR / 'staticfiles_collected'
+# ----- КІНЕЦЬ ВАЖЛИВИХ ЗМІН -----
+
+# Налаштування для медіа файлів (завантажених користувачами)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+# Не забудь створити папку 'media' в корені проекту (на рівні 'static'),
+# якщо плануєш завантажувати файли.
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

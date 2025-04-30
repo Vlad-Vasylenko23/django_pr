@@ -1,37 +1,36 @@
-<!DOCTYPE html>
-<html lang="uk">
+{% extends "base.html" %}
 
-<head>
-    <title>Список публікацій</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
+{% block title %}Список публікацій{% endblock %}
 
-<body>
-    {% if category %}
-    <h1>{{ category.category }}</h1>
-    {% else %}
-    <h1>Всі публікації</h1>
-    {% endif %}
+{% block content %}
+    <div class="container mt-4">
+        {% if category %}
+            <h1>{{ category.category }}</h1>
+        {% else %}
+            <h1>Всі публікації</h1>
+        {% endif %}
 
-    {% if items %}
-    {% for item in items %}
-    <div>
-        <a href="{{ item.get_absolute_url }}">
-            <h4>{{ item.title }}</h4>
-        </a>
-        <h5>
-            {{ item.pub_date|date:"j EY"|safe|linebreaks }}
-        </h5>
-        <p>
-            {{ item.description|safe|escape|striptags|truncatewords_html:32 }}
-        </p>
+        <div class="row">
+            {% for item in items %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a href="{{ item.get_absolute_url }}" class="text-dark">{{ item.title }}</a>
+                            </h2>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{ item.pub_date|date:"j E Y" }}
+                            </h6>
+                            <p class="card-text">
+                                {{ item.description|safe|escape|striptags|truncatewords:32 }}
+                            </p>
+                            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читати далі</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'home' %}" class="btn btn-secondary">На головну</a>
     </div>
-    {% endfor %}
-    {% endif %}
-
-    <a href="{% url 'home' %}">
-        <h4>На головну</h4>
-    </a>
-</body>
-
-</html>
+{% endblock %}

@@ -1,0 +1,116 @@
+/* Загальні стилі для всього сайту */
+
+body {
+    font-family: 'Arial', sans-serif; /* Змінюємо шрифт на Arial або sans-serif */
+    background-color: #f8f9fa; /* Світло-сірий фон для всієї сторінки */
+    color: #333; /* Темно-сірий колір тексту для кращої читабельності */
+    line-height: 1.6; /* Міжрядковий інтервал для зручного читання */
+}
+
+/* Стилі для навігаційної панелі */
+
+.navbar {
+    background-color: #343a40; /* Темно-сірий фон для навігації */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Збільшений розмір шрифту для назви блогу */
+    font-weight: bold; /* Жирний шрифт для назви блогу */
+    color: white !important; /* Білий колір тексту назви блогу */
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important; /* Трохи прозорий білий колір для посилань */
+    margin-right: 1rem; /* Відступ між посиланнями */
+}
+
+.navbar-nav .nav-link:hover {
+    color: white !important; /* Білий колір при наведенні */
+}
+
+/* Стилі для заголовків */
+
+h1, h2, h3 {
+    color: #007bff; /* Синій колір для заголовків */
+    margin-bottom: 0.5rem; /* Відступ знизу */
+}
+
+/* Стилі для карток */
+
+.card {
+    border: none; /* Прибираємо рамку картки */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05); /* Легка тінь для ефекту глибини */
+    margin-bottom: 1.5rem; /* Відступ між картками */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Розмір заголовка картки */
+    margin-bottom: 0.75rem; /* Відступ знизу */
+}
+
+.card-text {
+    font-size: 1rem; /* Розмір тексту картки */
+}
+
+.card-footer {
+    background-color: transparent; /* Прозорий фон для футера картки */
+    border-top: 1px solid rgba(0, 0, 0, 0.125); /* Тонка лінія зверху */
+}
+
+/* Стилі для посилань */
+
+a {
+    color: #007bff; /* Синій колір для посилань */
+    text-decoration: none; /* Прибираємо підкреслення */
+    transition: color 0.15s ease-in-out; /* Плавний перехід кольору */
+}
+
+a:hover {
+    color: #0056b3; /* Темніший синій при наведенні */
+    text-decoration: underline; /* Підкреслюємо при наведенні */
+}
+
+/* Стилі для кнопок */
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Стилі для футера */
+
+footer {
+    background-color: #343a40; /* Темно-сірий фон для футера */
+    color: white; /* Білий колір тексту */
+    padding: 2rem 0; /* Відступи зверху та знизу */
+    text-align: center; /* Вирівнюємо текст по центру */
+    margin-top: 2rem; /* Відступ зверху */
+}
+
+/* Специфічні стилі для сторінок (за потреби) */
+
+/* Стилі для списку статей */
+.article-list-item {
+    margin-bottom: 20px; /* Додати відступ між елементами списку статей */
+}
+
+/* Стилі для детальної статті */
+.article-detail-title {
+    font-size: 2.5rem; /* Змінити розмір заголовка статті */
+    margin-bottom: 1rem;
+}
+
+.article-detail-date {
+    font-style: italic; /* Зробити дату статті курсивом */
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+.article-detail-content {
+    line-height: 1.6; /* Змінити міжрядковий інтервал в тексті статті */
+}
